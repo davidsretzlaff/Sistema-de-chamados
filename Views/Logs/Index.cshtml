@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ChamadosPro.Models.Log>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Chamados.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResponsavelChamado.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datalog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Chamados.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResponsavelChamado.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datalog)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdLog }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdLog }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdLog })
+        </td>
+    </tr>
+}
+
+</table>

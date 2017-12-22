@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ChamadosPro.Models.Chamados>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubCategoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UsuarioRequisitante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UsuarioResponsavel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MatriculaOperador)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataAbertura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataFechamento)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubCategoria.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsuarioRequisitante.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsuarioResponsavel.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MatriculaOperador)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataAbertura)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataFechamento)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdChamado }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdChamado }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdChamado })
+        </td>
+    </tr>
+}
+
+</table>

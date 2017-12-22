@@ -1,0 +1,934 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Cancelamento_Proposta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cpf" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Cancelamento_PropostaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Cancelamento_PropostaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TefMaximidia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Numero_cartao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="validade" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CVV2" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="valor" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cod_Retorno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Seq_Tef" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cod_campanha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="seq_campanha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario_tef" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TefMaximidiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TefMaximidiaResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cod_Retorno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Seq_Tef" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TefMaximidiaCancelamento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Seq_Trans_Cobranca" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TefMaximidiaCancelamentoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TefMaximidiaCancelamentoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TefInformacao">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Numero_cartao" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dia_cobranca" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cod_retorno" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Valor_Enviado" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="Seq_Tef" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pago" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TefInformacaoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TefInformacaoResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cod_retorno" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Valor_Enviado" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="Seq_Tef" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pago" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TefVerifica_Cliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cpf" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Numero_cartao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Conta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Agencia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cod_Febraban" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nosso_numero" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TefVerifica_ClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TefVerifica_ClienteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cImport_Associado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="numero_vendas" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="id_registro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cpf" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bandeira" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="num_cartao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="complemen_cartao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_venc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="validade" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nome_titular" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nome_segurado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data_nascimento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="altura" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sexo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="peso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_seguro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="val_MA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="val_IPA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="premio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="operador" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="obs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="compl_benefic" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="supervisor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="e_civil" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="extensao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="e_mail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ocupacao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="digito_rg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="emissor_rg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data_emiss_rg" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="master" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="a_express" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="visa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="diners" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="filhos" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="banco" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agencia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contaban" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cobranca" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nosso_numero" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_lote" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cod_seguradora" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cod_produto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Obs_Rejeicao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hipercard" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="digito_agencia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_conta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="digito_conta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nacionalidade" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_registro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cod_rejeicao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="desc_ocupacao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="encaminha_para" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data_venda" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data_excluido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data_vencimento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="venda_programada" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="campanha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pago" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="faixa_renda" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idligacao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agravo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_proposta_advance" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="plano" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="val_morte_qc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data_retorno_advance" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cImport_AssociadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cImport_AssociadoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cImport_Beneficiario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id_registro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_vendas" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentesco" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Percentual" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data_nasc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Numero_lote" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="obs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Complemento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cImport_BeneficiarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cImport_BeneficiarioResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cImport_Endereco">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_endereco" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="endereco" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bairro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uf" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cep" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Numero" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cidade" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Complemento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="id_registro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_vendas" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_lote" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Correspondencia" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cImport_EnderecoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cImport_EnderecoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cImport_Cartoes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id_registro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_vendas" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bandeira" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="num_cartao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="complemen_cartao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_venc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="validade" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nome_titular" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cImport_CartoesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cImport_CartoesResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cImport_ContasAdicionais">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id_registro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_vendas" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Banco" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Agencia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DigitoAgencia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Conta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DigitoConta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TipoConta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_vencimento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nome_titular" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cImport_ContasAdicionaisResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cImport_ContasAdicionaisResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cImport_Telefone">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id_registro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_vendas" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ddd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ramal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_lote" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cImport_TelefoneResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cImport_TelefoneResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cIncluir_Indicacao">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Indicado_Por" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nome_Indicado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DDD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Telefone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cidade" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cIncluir_IndicacaoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cIncluir_IndicacaoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cExcluir_Telefone_Maxivida">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DDD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Telefone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CPF" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cExcluir_Telefone_MaxividaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cExcluir_Telefone_MaxividaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cVerificaSenha">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="matricula" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="senha" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cVerificaSenhaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cVerificaSenhaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cBuscaFonesLogProspectsFones">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NumeroVendas" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cBuscaFonesLogProspectsFonesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cBuscaFonesLogProspectsFonesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvanceConsultaRetorno">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="numerosolicitacao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigoCliente" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvanceConsultaRetornoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdvanceConsultaRetornoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WhatsAppSend">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Telefone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WhatsAppSendResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WhatsAppSendResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cEnviaXMLAdvance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cEnviaXMLAdvanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cEnviaXMLAdvanceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Cancelamento_PropostaSoapIn">
+    <wsdl:part name="parameters" element="tns:Cancelamento_Proposta" />
+  </wsdl:message>
+  <wsdl:message name="Cancelamento_PropostaSoapOut">
+    <wsdl:part name="parameters" element="tns:Cancelamento_PropostaResponse" />
+  </wsdl:message>
+  <wsdl:message name="TefMaximidiaSoapIn">
+    <wsdl:part name="parameters" element="tns:TefMaximidia" />
+  </wsdl:message>
+  <wsdl:message name="TefMaximidiaSoapOut">
+    <wsdl:part name="parameters" element="tns:TefMaximidiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="TefMaximidiaCancelamentoSoapIn">
+    <wsdl:part name="parameters" element="tns:TefMaximidiaCancelamento" />
+  </wsdl:message>
+  <wsdl:message name="TefMaximidiaCancelamentoSoapOut">
+    <wsdl:part name="parameters" element="tns:TefMaximidiaCancelamentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="TefInformacaoSoapIn">
+    <wsdl:part name="parameters" element="tns:TefInformacao" />
+  </wsdl:message>
+  <wsdl:message name="TefInformacaoSoapOut">
+    <wsdl:part name="parameters" element="tns:TefInformacaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="TefVerifica_ClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:TefVerifica_Cliente" />
+  </wsdl:message>
+  <wsdl:message name="TefVerifica_ClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:TefVerifica_ClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="cImport_AssociadoSoapIn">
+    <wsdl:part name="parameters" element="tns:cImport_Associado" />
+  </wsdl:message>
+  <wsdl:message name="cImport_AssociadoSoapOut">
+    <wsdl:part name="parameters" element="tns:cImport_AssociadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="cImport_BeneficiarioSoapIn">
+    <wsdl:part name="parameters" element="tns:cImport_Beneficiario" />
+  </wsdl:message>
+  <wsdl:message name="cImport_BeneficiarioSoapOut">
+    <wsdl:part name="parameters" element="tns:cImport_BeneficiarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="cImport_EnderecoSoapIn">
+    <wsdl:part name="parameters" element="tns:cImport_Endereco" />
+  </wsdl:message>
+  <wsdl:message name="cImport_EnderecoSoapOut">
+    <wsdl:part name="parameters" element="tns:cImport_EnderecoResponse" />
+  </wsdl:message>
+  <wsdl:message name="cImport_CartoesSoapIn">
+    <wsdl:part name="parameters" element="tns:cImport_Cartoes" />
+  </wsdl:message>
+  <wsdl:message name="cImport_CartoesSoapOut">
+    <wsdl:part name="parameters" element="tns:cImport_CartoesResponse" />
+  </wsdl:message>
+  <wsdl:message name="cImport_ContasAdicionaisSoapIn">
+    <wsdl:part name="parameters" element="tns:cImport_ContasAdicionais" />
+  </wsdl:message>
+  <wsdl:message name="cImport_ContasAdicionaisSoapOut">
+    <wsdl:part name="parameters" element="tns:cImport_ContasAdicionaisResponse" />
+  </wsdl:message>
+  <wsdl:message name="cImport_TelefoneSoapIn">
+    <wsdl:part name="parameters" element="tns:cImport_Telefone" />
+  </wsdl:message>
+  <wsdl:message name="cImport_TelefoneSoapOut">
+    <wsdl:part name="parameters" element="tns:cImport_TelefoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="cIncluir_IndicacaoSoapIn">
+    <wsdl:part name="parameters" element="tns:cIncluir_Indicacao" />
+  </wsdl:message>
+  <wsdl:message name="cIncluir_IndicacaoSoapOut">
+    <wsdl:part name="parameters" element="tns:cIncluir_IndicacaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="cExcluir_Telefone_MaxividaSoapIn">
+    <wsdl:part name="parameters" element="tns:cExcluir_Telefone_Maxivida" />
+  </wsdl:message>
+  <wsdl:message name="cExcluir_Telefone_MaxividaSoapOut">
+    <wsdl:part name="parameters" element="tns:cExcluir_Telefone_MaxividaResponse" />
+  </wsdl:message>
+  <wsdl:message name="cVerificaSenhaSoapIn">
+    <wsdl:part name="parameters" element="tns:cVerificaSenha" />
+  </wsdl:message>
+  <wsdl:message name="cVerificaSenhaSoapOut">
+    <wsdl:part name="parameters" element="tns:cVerificaSenhaResponse" />
+  </wsdl:message>
+  <wsdl:message name="cBuscaFonesLogProspectsFonesSoapIn">
+    <wsdl:part name="parameters" element="tns:cBuscaFonesLogProspectsFones" />
+  </wsdl:message>
+  <wsdl:message name="cBuscaFonesLogProspectsFonesSoapOut">
+    <wsdl:part name="parameters" element="tns:cBuscaFonesLogProspectsFonesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdvanceConsultaRetornoSoapIn">
+    <wsdl:part name="parameters" element="tns:AdvanceConsultaRetorno" />
+  </wsdl:message>
+  <wsdl:message name="AdvanceConsultaRetornoSoapOut">
+    <wsdl:part name="parameters" element="tns:AdvanceConsultaRetornoResponse" />
+  </wsdl:message>
+  <wsdl:message name="WhatsAppSendSoapIn">
+    <wsdl:part name="parameters" element="tns:WhatsAppSend" />
+  </wsdl:message>
+  <wsdl:message name="WhatsAppSendSoapOut">
+    <wsdl:part name="parameters" element="tns:WhatsAppSendResponse" />
+  </wsdl:message>
+  <wsdl:message name="cEnviaXMLAdvanceSoapIn">
+    <wsdl:part name="parameters" element="tns:cEnviaXMLAdvance" />
+  </wsdl:message>
+  <wsdl:message name="cEnviaXMLAdvanceSoapOut">
+    <wsdl:part name="parameters" element="tns:cEnviaXMLAdvanceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="Cancelamento_Proposta">
+      <wsdl:input message="tns:Cancelamento_PropostaSoapIn" />
+      <wsdl:output message="tns:Cancelamento_PropostaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TefMaximidia">
+      <wsdl:input message="tns:TefMaximidiaSoapIn" />
+      <wsdl:output message="tns:TefMaximidiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TefMaximidiaCancelamento">
+      <wsdl:input message="tns:TefMaximidiaCancelamentoSoapIn" />
+      <wsdl:output message="tns:TefMaximidiaCancelamentoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TefInformacao">
+      <wsdl:input message="tns:TefInformacaoSoapIn" />
+      <wsdl:output message="tns:TefInformacaoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TefVerifica_Cliente">
+      <wsdl:input message="tns:TefVerifica_ClienteSoapIn" />
+      <wsdl:output message="tns:TefVerifica_ClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Associado">
+      <wsdl:input message="tns:cImport_AssociadoSoapIn" />
+      <wsdl:output message="tns:cImport_AssociadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Beneficiario">
+      <wsdl:input message="tns:cImport_BeneficiarioSoapIn" />
+      <wsdl:output message="tns:cImport_BeneficiarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Endereco">
+      <wsdl:input message="tns:cImport_EnderecoSoapIn" />
+      <wsdl:output message="tns:cImport_EnderecoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Cartoes">
+      <wsdl:input message="tns:cImport_CartoesSoapIn" />
+      <wsdl:output message="tns:cImport_CartoesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cImport_ContasAdicionais">
+      <wsdl:input message="tns:cImport_ContasAdicionaisSoapIn" />
+      <wsdl:output message="tns:cImport_ContasAdicionaisSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Telefone">
+      <wsdl:input message="tns:cImport_TelefoneSoapIn" />
+      <wsdl:output message="tns:cImport_TelefoneSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cIncluir_Indicacao">
+      <wsdl:input message="tns:cIncluir_IndicacaoSoapIn" />
+      <wsdl:output message="tns:cIncluir_IndicacaoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cExcluir_Telefone_Maxivida">
+      <wsdl:input message="tns:cExcluir_Telefone_MaxividaSoapIn" />
+      <wsdl:output message="tns:cExcluir_Telefone_MaxividaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cVerificaSenha">
+      <wsdl:input message="tns:cVerificaSenhaSoapIn" />
+      <wsdl:output message="tns:cVerificaSenhaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cBuscaFonesLogProspectsFones">
+      <wsdl:input message="tns:cBuscaFonesLogProspectsFonesSoapIn" />
+      <wsdl:output message="tns:cBuscaFonesLogProspectsFonesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdvanceConsultaRetorno">
+      <wsdl:input message="tns:AdvanceConsultaRetornoSoapIn" />
+      <wsdl:output message="tns:AdvanceConsultaRetornoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WhatsAppSend">
+      <wsdl:input message="tns:WhatsAppSendSoapIn" />
+      <wsdl:output message="tns:WhatsAppSendSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cEnviaXMLAdvance">
+      <wsdl:input message="tns:cEnviaXMLAdvanceSoapIn" />
+      <wsdl:output message="tns:cEnviaXMLAdvanceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Cancelamento_Proposta">
+      <soap:operation soapAction="http://tempuri.org/Cancelamento_Proposta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TefMaximidia">
+      <soap:operation soapAction="http://tempuri.org/TefMaximidia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TefMaximidiaCancelamento">
+      <soap:operation soapAction="http://tempuri.org/TefMaximidiaCancelamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TefInformacao">
+      <soap:operation soapAction="http://tempuri.org/TefInformacao" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TefVerifica_Cliente">
+      <soap:operation soapAction="http://tempuri.org/TefVerifica_Cliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Associado">
+      <soap:operation soapAction="http://tempuri.org/cImport_Associado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Beneficiario">
+      <soap:operation soapAction="http://tempuri.org/cImport_Beneficiario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Endereco">
+      <soap:operation soapAction="http://tempuri.org/cImport_Endereco" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Cartoes">
+      <soap:operation soapAction="http://tempuri.org/cImport_Cartoes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cImport_ContasAdicionais">
+      <soap:operation soapAction="http://tempuri.org/cImport_ContasAdicionais" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Telefone">
+      <soap:operation soapAction="http://tempuri.org/cImport_Telefone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cIncluir_Indicacao">
+      <soap:operation soapAction="http://tempuri.org/cIncluir_Indicacao" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cExcluir_Telefone_Maxivida">
+      <soap:operation soapAction="http://tempuri.org/cExcluir_Telefone_Maxivida" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cVerificaSenha">
+      <soap:operation soapAction="http://tempuri.org/cVerificaSenha" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cBuscaFonesLogProspectsFones">
+      <soap:operation soapAction="http://tempuri.org/cBuscaFonesLogProspectsFones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvanceConsultaRetorno">
+      <soap:operation soapAction="http://tempuri.org/AdvanceConsultaRetorno" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WhatsAppSend">
+      <soap:operation soapAction="http://tempuri.org/WhatsAppSend" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cEnviaXMLAdvance">
+      <soap:operation soapAction="http://tempuri.org/cEnviaXMLAdvance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Cancelamento_Proposta">
+      <soap12:operation soapAction="http://tempuri.org/Cancelamento_Proposta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TefMaximidia">
+      <soap12:operation soapAction="http://tempuri.org/TefMaximidia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TefMaximidiaCancelamento">
+      <soap12:operation soapAction="http://tempuri.org/TefMaximidiaCancelamento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TefInformacao">
+      <soap12:operation soapAction="http://tempuri.org/TefInformacao" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TefVerifica_Cliente">
+      <soap12:operation soapAction="http://tempuri.org/TefVerifica_Cliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Associado">
+      <soap12:operation soapAction="http://tempuri.org/cImport_Associado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Beneficiario">
+      <soap12:operation soapAction="http://tempuri.org/cImport_Beneficiario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Endereco">
+      <soap12:operation soapAction="http://tempuri.org/cImport_Endereco" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Cartoes">
+      <soap12:operation soapAction="http://tempuri.org/cImport_Cartoes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cImport_ContasAdicionais">
+      <soap12:operation soapAction="http://tempuri.org/cImport_ContasAdicionais" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cImport_Telefone">
+      <soap12:operation soapAction="http://tempuri.org/cImport_Telefone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cIncluir_Indicacao">
+      <soap12:operation soapAction="http://tempuri.org/cIncluir_Indicacao" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cExcluir_Telefone_Maxivida">
+      <soap12:operation soapAction="http://tempuri.org/cExcluir_Telefone_Maxivida" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cVerificaSenha">
+      <soap12:operation soapAction="http://tempuri.org/cVerificaSenha" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cBuscaFonesLogProspectsFones">
+      <soap12:operation soapAction="http://tempuri.org/cBuscaFonesLogProspectsFones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvanceConsultaRetorno">
+      <soap12:operation soapAction="http://tempuri.org/AdvanceConsultaRetorno" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WhatsAppSend">
+      <soap12:operation soapAction="http://tempuri.org/WhatsAppSend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cEnviaXMLAdvance">
+      <soap12:operation soapAction="http://tempuri.org/cEnviaXMLAdvance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://192.168.0.8:3003/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://192.168.0.8:3003/Service1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

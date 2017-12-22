@@ -1,0 +1,98 @@
+﻿@model ChamadosPro.Models.Chamados
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Chamados</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubCategoria.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubCategoria.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioRequisitante.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioRequisitante.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioResponsavel.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioResponsavel.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MatriculaOperador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MatriculaOperador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataAbertura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataAbertura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFechamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFechamento)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdChamado }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
