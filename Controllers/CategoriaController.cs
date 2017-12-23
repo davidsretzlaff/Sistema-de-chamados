@@ -10,6 +10,7 @@ using ChamadosPro.Models;
 
 namespace ChamadosPro.Controllers
 {
+    [Authorize(Roles = "adm")]
     public class CategoriaController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

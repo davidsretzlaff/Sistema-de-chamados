@@ -41,6 +41,9 @@
         <th>
             @Html.DisplayNameFor(model => model.DataFechamento)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EquipamentoID)
+        </th>
         <th></th>
     </tr>
 
@@ -75,6 +78,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DataFechamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EquipamentoID)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdChamado }) |

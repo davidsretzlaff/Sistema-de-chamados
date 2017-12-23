@@ -10,114 +10,113 @@ using ChamadosPro.Models;
 
 namespace ChamadosPro.Controllers
 {
-    [Authorize(Roles = "adm")]
-    public class SubCategoriasController : Controller
+    public class ViewChamadoController : Controller
     {
-        
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: SubCategorias
+        // GET: ViewChamado
         public ActionResult Index()
         {
-            var subCategorias = db.SubCategorias.Include(s => s.Categoria);
-            return View(subCategorias.ToList());
+
+
+            var viewModel = new ViewChamado()
+            {
+
+            };
+            return View(viewModel);
         }
 
-        // GET: SubCategorias/Details/5
+        // GET: ViewChamado/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SubCategoria subCategoria = db.SubCategorias.Find(id);
-            if (subCategoria == null)
+            ViewChamado viewChamado = db.ViewChamadoes.Find(id);
+            if (viewChamado == null)
             {
                 return HttpNotFound();
             }
-            return View(subCategoria);
+            return View(viewChamado);
         }
 
-        // GET: SubCategorias/Create
+        // GET: ViewChamado/Create
         public ActionResult Create()
         {
-            ViewBag.IdCategoria = new SelectList(db.Categorias, "IdCategoria", "IdCategoria");
             return View();
         }
 
-        // POST: SubCategorias/Create
+        // POST: ViewChamado/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdSubcategoria,Descricao,IdCategoria")] SubCategoria subCategoria)
+        public ActionResult Create([Bind(Include = "IDViewChamado")] ViewChamado viewChamado)
         {
             if (ModelState.IsValid)
             {
-                db.SubCategorias.Add(subCategoria);
+                db.ViewChamadoes.Add(viewChamado);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdCategoria = new SelectList(db.Categorias, "IdCategoria", "IdCategoria", subCategoria.IdCategoria);
-            return View(subCategoria);
+            return View(viewChamado);
         }
 
-        // GET: SubCategorias/Edit/5
+        // GET: ViewChamado/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SubCategoria subCategoria = db.SubCategorias.Find(id);
-            if (subCategoria == null)
+            ViewChamado viewChamado = db.ViewChamadoes.Find(id);
+            if (viewChamado == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdCategoria = new SelectList(db.Categorias, "IdCategoria", "IdCategoria", subCategoria.IdCategoria);
-            return View(subCategoria);
+            return View(viewChamado);
         }
 
-        // POST: SubCategorias/Edit/5
+        // POST: ViewChamado/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdSubcategoria,Descricao,IdCategoria")] SubCategoria subCategoria)
+        public ActionResult Edit([Bind(Include = "IDViewChamado")] ViewChamado viewChamado)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(subCategoria).State = EntityState.Modified;
+                db.Entry(viewChamado).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdCategoria = new SelectList(db.Categorias, "IdCategoria", "IdCategoria", subCategoria.IdCategoria);
-            return View(subCategoria);
+            return View(viewChamado);
         }
 
-        // GET: SubCategorias/Delete/5
+        // GET: ViewChamado/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SubCategoria subCategoria = db.SubCategorias.Find(id);
-            if (subCategoria == null)
+            ViewChamado viewChamado = db.ViewChamadoes.Find(id);
+            if (viewChamado == null)
             {
                 return HttpNotFound();
             }
-            return View(subCategoria);
+            return View(viewChamado);
         }
 
-        // POST: SubCategorias/Delete/5
+        // POST: ViewChamado/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SubCategoria subCategoria = db.SubCategorias.Find(id);
-            db.SubCategorias.Remove(subCategoria);
+            ViewChamado viewChamado = db.ViewChamadoes.Find(id);
+            db.ViewChamadoes.Remove(viewChamado);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

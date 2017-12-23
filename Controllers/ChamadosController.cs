@@ -10,14 +10,16 @@ using ChamadosPro.Models;
 
 namespace ChamadosPro.Controllers
 {
+    [Authorize(Roles = "adm")]
     public class ChamadosController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Chamados
         public ActionResult Index()
-        {
-            var chamados = db.Chamados.Include(c => c.Categoria).Include(c => c.Status).Include(c => c.SubCategoria).Include(c => c.UsuarioRequisitante).Include(c => c.UsuarioResponsavel);
+       {
+            var chamados = db.Chamados.Include(c => c.Categoria).Include(c => c.Status).Include(c => c.SubCategoria).Include(c => c.UsuarioRequisitante).Include(c => c.UsuarioResponsavel).Include(c => c.Equipamento);
+            
             return View(chamados.ToList());
         }
 
@@ -56,6 +58,7 @@ namespace ChamadosPro.Controllers
             if (ModelState.IsValid)
             {
                 chamados.DataAbertura = DateTime.Now;
+                chamados.EquipamentoID = null;
                 chamados.IdStatus = 1;
                 db.Chamados.Add(chamados);
                 db.SaveChanges();
@@ -126,6 +129,7 @@ namespace ChamadosPro.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.IdCategoria = new SelectList(db.Categorias, "IdCategoria", "Descricao", chamados.IdCategoria);
             ViewBag.IdStatus = new SelectList(db.Status, "IdStatus", "Descricao", chamados.IdStatus);
             ViewBag.IdSubcategoria = new SelectList(db.SubCategorias, "IdSubcategoria", "Descricao", chamados.IdSubcategoria);

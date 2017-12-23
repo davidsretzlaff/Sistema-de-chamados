@@ -15,7 +15,10 @@
             @Html.DisplayNameFor(model => model.Chamados.Descricao)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ResponsavelChamado.Email)
+            @Html.DisplayNameFor(model => model.RequisitanteID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResponsavelID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Datalog)
@@ -32,7 +35,10 @@
             @Html.DisplayFor(modelItem => item.Chamados.Descricao)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ResponsavelChamado.Email)
+            @Html.DisplayFor(modelItem => item.RequisitanteID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResponsavelID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Datalog)

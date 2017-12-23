@@ -19,14 +19,10 @@ namespace ChamadosPro.Models
         [ForeignKey("IdChamado")]
         public virtual Chamados Chamados { get; set; }
 
-        public string UserName { get; set; }
-        [ForeignKey("UserName")]
-        public virtual ApplicationUser ResponsavelChamado { get; set; }
-
-        [ForeignKey("UserName")]
-        public virtual ApplicationUser RequisitanteChamado { get; set; }
-
-
+        [ForeignKey("UsuarioResponsavel")]
+        public string ResponsavelID { get; set; }
+        
+        public virtual ApplicationUser UsuarioResponsavel { get; set; }
 
         public DateTime Datalog { get; set; }
         public string Descricao { get; set; }

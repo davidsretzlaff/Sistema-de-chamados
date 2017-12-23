@@ -10,7 +10,6 @@ using ChamadosPro.Models;
 
 namespace ChamadosPro.Controllers
 {
-    [Authorize(Roles = "adm")]
     public class EquipamentoController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -22,7 +21,7 @@ namespace ChamadosPro.Controllers
         }
 
         // GET: Equipamento/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -60,7 +59,7 @@ namespace ChamadosPro.Controllers
         }
 
         // GET: Equipamento/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -91,7 +90,7 @@ namespace ChamadosPro.Controllers
         }
 
         // GET: Equipamento/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -108,7 +107,7 @@ namespace ChamadosPro.Controllers
         // POST: Equipamento/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Equipamento equipamento = db.Equipamentoes.Find(id);
             db.Equipamentoes.Remove(equipamento);

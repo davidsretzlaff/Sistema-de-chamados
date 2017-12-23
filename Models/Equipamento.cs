@@ -10,7 +10,7 @@ namespace ChamadosPro.Models
     public class Equipamento
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdEquipamento{ get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string IdEquipamento{ get; set; }
     }
 }

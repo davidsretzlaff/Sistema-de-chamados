@@ -10,6 +10,7 @@ using ChamadosPro.Models;
 
 namespace ChamadosPro.Controllers
 {
+    [Authorize(Roles = "adm")]
     public class LogsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -17,7 +18,7 @@ namespace ChamadosPro.Controllers
         // GET: Logs
         public ActionResult Index()
         {
-            var logs = db.Logs.Include(l => l.Chamados).Include(l => l.ResponsavelChamado);
+            var logs = db.Logs.Include(l => l.Chamados);
             return View(logs.ToList());
         }
 
@@ -40,7 +41,7 @@ namespace ChamadosPro.Controllers
         public ActionResult Create()
         {
             ViewBag.IdChamado = new SelectList(db.Chamados, "IdChamado", "Descricao");
-            ViewBag.UserName = new SelectList(db.Users, "Id", "UserName");
+            
             return View();
         }
 
@@ -49,8 +50,9 @@ namespace ChamadosPro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdLog,IdChamado,UserName,Datalog,Descricao")] Log log)
+        public ActionResult Create([Bind(Include = "IdLog,IdChamado,RequisitanteID,ResponsavelID,Datalog,Descricao")] Log log)
         {
+            log.Datalog = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Logs.Add(log);
@@ -59,7 +61,7 @@ namespace ChamadosPro.Controllers
             }
 
             ViewBag.IdChamado = new SelectList(db.Chamados, "IdChamado", "Descricao", log.IdChamado);
-            ViewBag.UserName = new SelectList(db.Users, "Id", "UserName", log.UserName);
+            
             return View(log);
         }
 
@@ -76,7 +78,7 @@ namespace ChamadosPro.Controllers
                 return HttpNotFound();
             }
             ViewBag.IdChamado = new SelectList(db.Chamados, "IdChamado", "Descricao", log.IdChamado);
-            ViewBag.UserName = new SelectList(db.Users, "Id", "UserName", log.UserName);
+            
             return View(log);
         }
 
@@ -94,7 +96,7 @@ namespace ChamadosPro.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.IdChamado = new SelectList(db.Chamados, "IdChamado", "Descricao", log.IdChamado);
-            ViewBag.UserName = new SelectList(db.Users, "Id", "UserName", log.UserName);
+            
             return View(log);
         }
 

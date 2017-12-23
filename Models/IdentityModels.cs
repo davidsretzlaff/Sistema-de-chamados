@@ -22,7 +22,7 @@ namespace ChamadosPro.Models
     {
         
         public ApplicationDbContext()
-            : base("Banco Teste", throwIfV1Schema: false)
+            : base("Banco Teste6777", throwIfV1Schema: false)
         {
         }
 
@@ -43,6 +43,6 @@ namespace ChamadosPro.Models
 
         public System.Data.Entity.DbSet<ChamadosPro.Models.Log> Logs { get; set; }
 
-      
+        public System.Data.Entity.DbSet<ChamadosPro.Models.ViewChamado> ViewChamadoes { get; set; }
     }
 }

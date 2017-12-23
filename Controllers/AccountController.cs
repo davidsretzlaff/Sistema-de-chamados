@@ -108,7 +108,7 @@ namespace ChamadosPro.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Invalid login attempt.");
+                ModelState.AddModelError("", "Senha incorreta.");
                 return View(model);
             }
            

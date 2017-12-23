@@ -39,6 +39,10 @@ namespace ChamadosPro.Models
         [ForeignKey("UsuarioResponsavel")]
         public string ResponsavelID { get; set; }
 
+        [ForeignKey("Equipamento")]
+        public string EquipamentoID { get; set; }
+
+        public virtual Equipamento Equipamento { get; set; }
         public virtual ApplicationUser UsuarioRequisitante { get; set; }
         public virtual ApplicationUser UsuarioResponsavel { get; set; }
 

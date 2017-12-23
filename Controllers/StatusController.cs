@@ -10,7 +10,7 @@ using ChamadosPro.Models;
 
 namespace ChamadosPro.Controllers
 {
-    //[Authorize(Roles = "adm")]
+    [Authorize(Roles = "adm")]
     public class StatusController : Controller
     {
         

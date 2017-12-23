@@ -9,10 +9,8 @@ namespace ChamadosPro.Controllers
 {
     //[Authorize(Roles = "adm")]
     public class RoleController : Controller
-    {
- 
-        ApplicationDbContext context;
-       
+    { 
+        ApplicationDbContext context;       
         public RoleController()
         {
             context = new ApplicationDbContext();

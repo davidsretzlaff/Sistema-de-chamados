@@ -33,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IdCategoria, "IdCategoria", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IdCategoria", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.IdCategoria, ViewBag.CountryList as SelectList, "Categoria", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdCategoria, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,10 +41,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IdSubcategoria, "IdSubcategoria", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IdSubcategoria", null, htmlAttributes: new { @class = "form-control" })
+               @Html.DropDownListFor(model => model.IdSubcategoria, new SelectList(" "), "Tipo categoria", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdSubcategoria, "", new { @class = "text-danger" })
             </div>
         </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.MatriculaOperador, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -86,9 +87,9 @@
     <script>
     $(document).ready(function () {
         $("#IdCategoria").change(function () {
-            $.get("/Chamados/GetSubCategoria", { IdCategoria: $("#IdCategoria").val() }, function (data) {
-                $("#IdSubcategoria").empty();
-                $.each(data, function (index, row) {
+            $("#IdSubcategoria").empty();
+            $.get("/Chamados/GetSubCategoria", { IdCategoria: $("#IdCategoria").val() }, function (data) {              
+                $.each(data, function (index, row) {                   
                     $("#IdSubcategoria").append("<option value='" + row.IdSubcategoria + "'>" + row.Descricao + "</option>")
                 });
             });
