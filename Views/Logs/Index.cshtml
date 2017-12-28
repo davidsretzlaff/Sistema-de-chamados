@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ChamadosPro.Models.Log>
+﻿@model ChamadosPro.Models.Log
 
 @{
     ViewBag.Title = "Index";
@@ -13,9 +13,6 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Chamados.Descricao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequisitanteID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ResponsavelID)
@@ -33,9 +30,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Chamados.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequisitanteID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ResponsavelID)

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ChamadosPro.Models.Log>
+
+@{
+    ViewBag.Title = "Log";
+}
+
+<h2>Log</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ResponsavelID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datalog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item. ResponsavelID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Datalog)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+        </tr>
+    }
+
+</table>
+

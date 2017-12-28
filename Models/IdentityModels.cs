@@ -22,7 +22,7 @@ namespace ChamadosPro.Models
     {
         
         public ApplicationDbContext()
-            : base("Banco Teste6777", throwIfV1Schema: false)
+            : base("Chamados TI", throwIfV1Schema: false)
         {
         }
 

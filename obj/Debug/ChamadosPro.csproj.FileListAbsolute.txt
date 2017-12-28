@@ -79,4 +79,5 @@ C:\Users\davidr\documents\visual studio 2015\Projects\ChamadosPro\ChamadosPro\bi
 C:\Users\davidr\documents\visual studio 2015\Projects\ChamadosPro\ChamadosPro\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\davidr\documents\visual studio 2015\Projects\ChamadosPro\ChamadosPro\obj\Debug\ChamadosPro.dll
 C:\Users\davidr\documents\visual studio 2015\Projects\ChamadosPro\ChamadosPro\obj\Debug\ChamadosPro.pdb
-C:\Users\davidr\documents\visual studio 2015\Projects\ChamadosPro\ChamadosPro\obj\Debug\ChamadosPro.csprojResolveAssemblyReference.cache
+C:\Users\davidr\Documents\Visual Studio 2015\Projects\ChamadosPro\ChamadosPro\obj\Debug\ChamadosPro.Migrations.Iniciando.resources
+C:\Users\davidr\Documents\Visual Studio 2015\Projects\ChamadosPro\ChamadosPro\obj\Debug\ChamadosPro.csproj.GenerateResource.Cache

@@ -205,10 +205,14 @@
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\SubCategoriasController.cs" />
-    <Compile Include="Controllers\ViewChamadoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712281753098_Iniciando.cs" />
+    <Compile Include="Migrations\201712281753098_Iniciando.Designer.cs">
+      <DependentUpon>201712281753098_Iniciando.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Chamados.cs" />
@@ -336,13 +340,9 @@
     <Content Include="Views\Chamados\Create.cshtml" />
     <Content Include="Views\Chamados\Delete.cshtml" />
     <Content Include="Views\Chamados\Details.cshtml" />
-    <Content Include="Views\Chamados\Edit.cshtml" />
     <Content Include="Views\Chamados\Index.cshtml" />
-    <Content Include="Views\ViewChamado\Create.cshtml" />
-    <Content Include="Views\ViewChamado\Delete.cshtml" />
-    <Content Include="Views\ViewChamado\Details.cshtml" />
-    <Content Include="Views\ViewChamado\Edit.cshtml" />
-    <Content Include="Views\ViewChamado\Index.cshtml" />
+    <Content Include="Views\Chamados\Log.cshtml" />
+    <Content Include="Views\Chamados\CriarLog.cshtml" />
     <None Include="Web References\wbLogin\Service1.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -410,6 +410,11 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>ChamadosPro_wbLogin_Service1</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201712281753098_Iniciando.resx">
+      <DependentUpon>201712281753098_Iniciando.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
