@@ -6,6 +6,15 @@
 
 <h2>Log</h2>
 
+@foreach (var item in Model)
+{
+    
+    if (item.ResponsavelID != null)
+    {
+        @Html.ActionLink("Adicionar mensagem", "CriarLog", new { id = item.IdChamado })
+    }
+    break;
+}
 <table class="table">
     <tr>
         <th>
@@ -33,7 +42,9 @@
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
         </tr>
-    }
+
+}
+
 
 </table>
 

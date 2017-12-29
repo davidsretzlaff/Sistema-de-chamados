@@ -83,16 +83,22 @@
             @Html.DisplayFor(modelItem => item.EquipamentoID)
         </td>
         <td>
-            @Html.ActionLink("Log", "Log", new { id = item.IdChamado }, null) 
+            @Html.ActionLink("Log", "Log", new { id = item.IdChamado }, null)
             @if (User.Identity.Name == "17")
             {
-                @Html.ActionLink("Pegar Chamado", "PegarChamado", new { id = item.IdChamado }) 
+                @Html.ActionLink("Pegar Chamado", "PegarChamado", new { id = item.IdChamado })<br>
+
+                if (item.ResponsavelID != null)
+                {
+                    @Html.ActionLink("Adicionar Maquina", "AdicionarMaquina", new { id = item.IdChamado })
+                }
             }
 
-            @Html.ActionLink("Details", "Details", new { id = item.IdChamado }) 
+            @Html.ActionLink("Details", "Details", new { id = item.IdChamado })
             @Html.ActionLink("Atualizar", "CriarLog", new { id = item.IdChamado })
 
         </td>
+
     </tr>
 }
 

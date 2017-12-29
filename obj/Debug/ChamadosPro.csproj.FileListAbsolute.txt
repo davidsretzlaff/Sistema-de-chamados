@@ -81,3 +81,4 @@ C:\Users\davidr\documents\visual studio 2015\Projects\ChamadosPro\ChamadosPro\ob
 C:\Users\davidr\documents\visual studio 2015\Projects\ChamadosPro\ChamadosPro\obj\Debug\ChamadosPro.pdb
 C:\Users\davidr\Documents\Visual Studio 2015\Projects\ChamadosPro\ChamadosPro\obj\Debug\ChamadosPro.Migrations.Iniciando.resources
 C:\Users\davidr\Documents\Visual Studio 2015\Projects\ChamadosPro\ChamadosPro\obj\Debug\ChamadosPro.csproj.GenerateResource.Cache
+C:\Users\davidr\Documents\Visual Studio 2015\Projects\ChamadosPro\ChamadosPro\obj\Debug\ChamadosPro.csprojResolveAssemblyReference.cache

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ChamadosPro.Models.Equipamento>
+
+@{
+    ViewBag.Title = "Equipamento";
+}
+
+<h2>Equipamento</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdEquipamento)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEquipamento)
+            </td>
+        </tr>
+    }
+
+</table>

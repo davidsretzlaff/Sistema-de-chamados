@@ -20,11 +20,22 @@ namespace ChamadosPro.Controllers
         // GET: Chamados
         public ActionResult Index()
        {
-            var chamados = db.Chamados.Include(c => c.Categoria).Include(c => c.Status)
+            if(User.Identity.Name == "17")
+            {
+                var chamados = db.Chamados.Include(c => c.Categoria).Include(c => c.Status)
                 .Include(c => c.SubCategoria).Include(c => c.UsuarioRequisitante)
                 .Include(c => c.UsuarioResponsavel).Include(c => c.Equipamento);
-            
-            return View(chamados.ToList());
+                return View(chamados.ToList());
+            }
+            else
+            {
+                var chamados = db.Chamados.Include(c => c.Categoria).Include(c => c.Status)
+                .Include(c => c.SubCategoria).Include(c => c.UsuarioRequisitante)
+                .Include(c => c.UsuarioResponsavel).Include(c => c.Equipamento).Where(x => x.RequisitanteID == User.Identity.Name);
+
+                return View(chamados.ToList());
+            }
+
         }
 
         // GET: Chamados/Details/5
@@ -62,6 +73,7 @@ namespace ChamadosPro.Controllers
             return View(log);
         }
 
+       
 
         public ActionResult Log(int id)
         {
@@ -116,26 +128,96 @@ namespace ChamadosPro.Controllers
 
         }
 
-        //// GET: Chamados/Edit/5
-        //public ActionResult Edit(int? id)
+        // GET: Chamados/Edit/5
+        public ActionResult AdicionarMaquina(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Chamados chamados = db.Chamados.Find(id);
+            if (chamados == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.IdCategoria = new SelectList(db.Categorias, "IdCategoria", "Descricao", chamados.IdCategoria);
+            ViewBag.IdStatus = new SelectList(db.Status, "IdStatus", "Descricao", chamados.IdStatus);
+            ViewBag.IdSubcategoria = new SelectList(db.SubCategorias, "IdSubcategoria", "Descricao", chamados.IdSubcategoria);
+
+            return View(chamados);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AdicionarMaquina([Bind(Include = "IdChamado,EquipamentoID")] Chamados chamados)
+
+        {
+            var recebeChamado = db.Chamados.AsNoTracking().Where(p => p.IdChamado == chamados.IdChamado).FirstOrDefault();
+            if (recebeChamado.ResponsavelID != null)
+            {
+                chamados.RequisitanteID = recebeChamado.RequisitanteID;
+                chamados.ResponsavelID = recebeChamado.ResponsavelID;
+                chamados.DataAbertura = recebeChamado.DataAbertura;
+                chamados.IdStatus = recebeChamado.IdStatus;
+                chamados.MatriculaOperador = recebeChamado.MatriculaOperador;
+                chamados.Pa = recebeChamado.Pa;
+                chamados.Descricao = recebeChamado.Descricao;
+                chamados.IdCategoria = recebeChamado.IdCategoria;
+                chamados.IdSubcategoria = recebeChamado.IdSubcategoria;
+
+                var equipamento = db.Equipamentoes.SingleOrDefault(p => p.IdEquipamento == chamados.EquipamentoID);
+
+                if (equipamento != null)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(chamados).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                }
+                ViewBag.msg = "Equipamento não cadastrado";
+                return View(chamados);
+
+            }
+            else
+            {
+                ViewBag.msg = "Esse chamado ainda não tem responsavel";
+                return View(chamados);
+            }
+
+           
+        }
+
+        //public ActionResult AdicionarMaquina(int? id)
         //{
         //    if (id == null)
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-        //    Chamados chamados = db.Chamados.Find(id);
-        //    if (chamados == null)
+        //    Chamados chamado = db.Chamados.Find(id);
+        //    if (chamado == null)
         //    {
         //        return HttpNotFound();
         //    }
-          
-        //    ViewBag.IdCategoria = new SelectList(db.Categorias, "IdCategoria", "Descricao", chamados.IdCategoria);
-        //    ViewBag.IdStatus = new SelectList(db.Status, "IdStatus", "Descricao", chamados.IdStatus);
-        //    ViewBag.IdSubcategoria = new SelectList(db.SubCategorias, "IdSubcategoria", "Descricao", chamados.IdSubcategoria);
-
-        //    return View(chamados);
+        //    return View(chamado);
         //}
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult AdicionarMaquina([Bind(Include = "IdChamado,Descricao,Pa,IdCategoria,IdSubcategoria,IdStatus,MatriculaOperador,DataAbertura,DataFechamento,RequisitanteID,ResponsavelID")] Chamados chamado)
+        //{
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(chamado).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    return View(chamado);
+        //}
 
         public ViewResult PegarChamado(int id)
         {
