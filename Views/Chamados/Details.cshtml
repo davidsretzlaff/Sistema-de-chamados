@@ -6,6 +6,8 @@
 
 <h2>Details</h2>
 
+
+
 <div>
     <h4>Chamados</h4>
     <hr />
@@ -97,9 +99,24 @@
             @Html.DisplayFor(model => model.EquipamentoID)
         </dd>
 
+
     </dl>
 </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdChamado }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Log", "Chamados", new { id = Model.IdChamado })" data-toggle="tooltip" data-placement="top" title="Interações" class="w3-button w3-round-large  w3-gray c-white">
+        <i class="fa fa-commenting-o" aria-hidden="true"></i>
+    </a>
+   
+
+    @if (Model.ResponsavelID != null)
+    {
+        <a href="@Url.Action("AdicionarMaquina", "Chamados", new { id = Model.IdChamado })" data-toggle="tooltip" data-placement="top" title="Adicionar Maquina" class="w3-button w3-round-large w3-black  c-white">
+            <i class="fa fa-desktop" aria-hidden="true"></i>
+        </a>
+        
+    }
+</p>
+<p>
+    @Html.ActionLink("Voltar", "Index")
 </p>

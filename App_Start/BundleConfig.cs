@@ -24,8 +24,10 @@ namespace ChamadosPro
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/w3c.css",
+                      "~/Content/default.css",
+                      "~/Content/bootstrap.css"
+                    /*  "~/Content/site.css"*/));
         }
     }
 }

@@ -42,5 +42,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Details", "Chamados", new { id = Model.IdChamado })" class="w3-button w3-round-large  b-orange c-white">Voltar</a>
 </div>

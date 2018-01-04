@@ -219,6 +219,8 @@ namespace ChamadosPro.Controllers
         //    return View(chamado);
         //}
 
+
+        // adiciona responsavel ao chamado
         public ViewResult PegarChamado(int id)
         {
             var chamadoslista = db.Chamados.Include(c => c.Categoria).Include(c => c.Status)
@@ -227,25 +229,45 @@ namespace ChamadosPro.Controllers
 
             var chamados = db.Chamados.Where(p => p.IdChamado == id).FirstOrDefault();
 
-            chamados.IdStatus = 2;
-
+            // verifica se o chamado já não tem um responsavel
             if (chamados.ResponsavelID == null)
+            {
+                // adiciona status em andamento no chamado
+                chamados.IdStatus = 2;
+                // adiciona o responsavel no chamado
                 chamados.ResponsavelID = User.Identity.Name;
 
-            if (chamados.IdStatus.Value == 3)
-            {
-                chamados.DataFechamento = DateTime.Now;
-            }
-
-
-            if (ModelState.IsValid)
-            {
-                db.Entry(chamados).State = EntityState.Modified;
-                db.SaveChanges();
-                return View("Index",chamadoslista.ToList());
-            }
-
+                if (ModelState.IsValid)
+                {
+                    db.Entry(chamados).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return View("Index", chamadoslista.ToList());
+                }
+            }  
             return View("Index",chamadoslista.ToList());
+        }
+
+        public ViewResult FinalizarChamado(int id)
+        {
+
+            var chamadoslista = db.Chamados.Include(c => c.Categoria).Include(c => c.Status)
+            .Include(c => c.SubCategoria).Include(c => c.UsuarioRequisitante)
+            .Include(c => c.UsuarioResponsavel).Include(c => c.Equipamento);
+
+            var chamados = db.Chamados.Where(p => p.IdChamado == id).FirstOrDefault();
+
+            if (chamados.ResponsavelID != null)
+            {
+                chamados.IdStatus = 3;
+                chamados.DataFechamento = DateTime.Now;
+                if (ModelState.IsValid)
+                {
+                    db.Entry(chamados).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return View("Index", chamadoslista.ToList());
+                }
+            }
+            return View("Index", chamadoslista.ToList());
         }
 
         //[HttpPost]
@@ -263,7 +285,7 @@ namespace ChamadosPro.Controllers
         //    chamados.Descricao = recebeChamado.Descricao;
         //    chamados.IdCategoria = recebeChamado.IdCategoria;
         //    chamados.IdSubcategoria = recebeChamado.IdSubcategoria;          
-            
+
 
         //    if (recebeChamado.ResponsavelID == null)
         //        chamados.ResponsavelID = User.Identity.Name;

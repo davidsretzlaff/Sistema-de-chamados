@@ -4,102 +4,136 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="w3-container w3-display-container container">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Categoria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SubCategoria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UsuarioRequisitante)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UsuarioResponsavel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MatriculaOperador)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataAbertura)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataFechamento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EquipamentoID)
-        </th>
-        <th></th>
-    </tr>
+    <div class="w3-container  ">
+        <br></br>
+        <br></br>
+        <h6 class="w3-button  w3-hover-gray w3-padding w3-border">@Html.ActionLink("Criar chamado", "Create")</h6>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubCategoria.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UsuarioRequisitante.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UsuarioResponsavel.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MatriculaOperador)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataAbertura)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataFechamento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EquipamentoID)
-        </td>
-        <td>
-            @Html.ActionLink("Log", "Log", new { id = item.IdChamado }, null)
-            @if (User.Identity.Name == "17")
-            {
-                @Html.ActionLink("Pegar Chamado", "PegarChamado", new { id = item.IdChamado })<br>
+        <input class="w3-input w3-border w3-padding" type="text" placeholder="Achar ticket" id="myInput" onkeyup="procurarTicket()">
+        <br>
 
-                if (item.ResponsavelID != null)
+        <table class="w3-table-all w3-centered" id="myTable">
+            <tr class="b-blue-light">
+                <th>
+                    Ticket
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Categoria)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubCategoria)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UsuarioResponsavel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataAbertura)
+                </th>
+                <th>Açao</th>
+            </tr>
+            <tr>
+                @foreach (var item in Model)
                 {
-                    @Html.ActionLink("Adicionar Maquina", "AdicionarMaquina", new { id = item.IdChamado })
+                    if (item.Status.IdStatus == 3) {<div class="w3-red"></div> }
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdChamado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categoria.Descricao)
+                    </td>
+                    <td>
+                        <span 
+                              @{if (item.Status.Descricao == "Aberto") { <text> class="w3-red" </text> }}
+                              @*@{if (item.Status.Descricao == "Em andamento") { <text> class="b-orange" </text> }}*@
+                              @{if (item.Status.Descricao == "Resolvido") { <text> class="b-green" </text> }}>
+                            @Html.DisplayFor(modelItem => item.Status.Descricao)
+                        </span>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SubCategoria.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UsuarioResponsavel.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pa)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataAbertura)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details", "Chamados", new { id = item.IdChamado })" data-toggle="tooltip" data-placement="top" title="Detalhes" class="w3-button w3-round-large  b-orange c-white">
+
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        </a>
+                        @if (item.Status.IdStatus == 1 || item.Status.IdStatus == 2)
+                        {
+                            <a href="@Url.Action("Log", "Chamados", new { id = item.IdChamado })" data-toggle="tooltip" data-placement="top" title="Interações" class="w3-button w3-round-large  w3-gray c-white">
+                                <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                            </a>
+
+                            if (User.Identity.Name == "17")
+                            {
+                                if (item.ResponsavelID == null)
+                                {
+                                    <a href="@Url.Action("PegarChamado", "Chamados", new { id = item.IdChamado })" data-toggle="tooltip" data-placement="top" title="Pegar Chamado" class="w3-button w3-round-large  w3-red c-white">
+                                        <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+                                    </a>
+                                }
+                            }
+                            if (item.Status.IdStatus == 2)
+                            {
+                                <a href="@Url.Action("FinalizarChamado", "Chamados", new { id = item.IdChamado })" data-toggle="tooltip" data-placement="top" title="Finalizar Chamado" class="w3-button w3-round-large w3-green c-white">
+                                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                </a>
+                            }
+
+                        }
+                        
+
+
+                    </td>
+
+                </tr>
                 }
-            }
+            </table>
+            <br />
 
-            @Html.ActionLink("Details", "Details", new { id = item.IdChamado })
-            @Html.ActionLink("Atualizar", "CriarLog", new { id = item.IdChamado })
+        </div>
+    </div>
 
-        </td>
-
-    </tr>
-}
-
-</table>
+    <script>
+    function procurarTicket() {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>

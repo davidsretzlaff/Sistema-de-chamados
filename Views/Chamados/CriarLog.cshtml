@@ -10,7 +10,6 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
         <h4>Log</h4>
         <hr />
@@ -29,8 +28,6 @@
             </div>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Voltar para os logs", "Log")
-</div>
+
+}
