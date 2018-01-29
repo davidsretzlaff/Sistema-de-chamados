@@ -8,13 +8,14 @@
 
 @foreach (var item in Model)
 {
-    
+
     if (item.ResponsavelID != null)
     {
         @Html.ActionLink("Adicionar mensagem", "CriarLog", new { id = item.IdChamado })
     }
     break;
 }
+
 <table class="table">
     <tr>
         <th>
@@ -30,21 +31,22 @@
 
 @foreach (var item in Model)
 {
-
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item. ResponsavelID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Datalog)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-        </tr>
-
-}
-
-
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item. ResponsavelID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datalog)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+    </tr>        
+}    
 </table>
 
+@foreach (var item in Model)
+{
+    @Html.ActionLink("Voltar", "Details", new { id = item.IdChamado })
+    break;
+}

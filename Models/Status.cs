@@ -9,9 +9,12 @@ namespace ChamadosPro.Models
 {
     public class Status
     {
+        [Display(Name = "Status")]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdStatus { get; set; }
+
+        [Display(Name = "Status")]
         public string Descricao { get; set; }
 
     }

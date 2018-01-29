@@ -1,52 +1,50 @@
-﻿@model IEnumerable<ChamadosPro.Models.Chamados>
-
+﻿@using X.PagedList.Mvc;
+@model X.PagedList.PagedList<ChamadosPro.Models.Chamados>
 @{
     ViewBag.Title = "Index";
 }
-
-<div class="w3-container w3-display-container container">
-
+<div class="w3-container w3-display-container b-container">
     <div class="w3-container  ">
-        <br></br>
-        <br></br>
-        <h6 class="w3-button  w3-hover-gray w3-padding w3-border">@Html.ActionLink("Criar chamado", "Create")</h6>
-
+        <h6 class="w3-button  w3-hover-gray w3-padding w3-border  c-black b-grayh" >@Html.ActionLink("Criar chamado", "Create", new { @class = "c-black" })</h6>
         <input class="w3-input w3-border w3-padding" type="text" placeholder="Achar ticket" id="myInput" onkeyup="procurarTicket()">
         <br>
-
+        <input type="checkbox" id="Aberto"  class="filtro" value="Aberto" checked="checked" onclick="filtraChamados()"> Aberto 
+        <input type="checkbox" id="Andamento" class="filtro" value="Em Andamento" checked="checked" onclick="filtraChamados() "> Em andamento
+        <input type="checkbox" id="Resolvido" class="filtro" value="Resolvido" checked="checked" onclick="filtraChamados()"> Resolvido
+        <br>
         <table class="w3-table-all w3-centered" id="myTable">
             <tr class="b-blue-light">
                 <th>
-                    Ticket
+                    @Html.DisplayName("Ticket")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Categoria)
+                    @Html.DisplayName("Categoria")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Status)
+                    @Html.DisplayName("Status")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.SubCategoria)
+                    @Html.DisplayName("Subcategoria")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.UsuarioResponsavel)
+                    @Html.DisplayName("Responsavel")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Descricao)
+                    @Html.DisplayName("Descrição")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Pa)
+                    @Html.DisplayName("Pa")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DataAbertura)
+                    @Html.DisplayName("Data abertura")
                 </th>
-                <th>Açao</th>
+                <th>@Html.DisplayName("Ação")</th>
             </tr>
             <tr>
                 @foreach (var item in Model)
                 {
                     if (item.Status.IdStatus == 3) {<div class="w3-red"></div> }
-                <tr>
+                <tr class="chamado_unitario">
                     <td>
                         @Html.DisplayFor(modelItem => item.IdChamado)
                     </td>
@@ -54,12 +52,14 @@
                         @Html.DisplayFor(modelItem => item.Categoria.Descricao)
                     </td>
                     <td>
-                        <span 
-                              @{if (item.Status.Descricao == "Aberto") { <text> class="w3-red" </text> }}
-                              @*@{if (item.Status.Descricao == "Em andamento") { <text> class="b-orange" </text> }}*@
-                              @{if (item.Status.Descricao == "Resolvido") { <text> class="b-green" </text> }}>
-                            @Html.DisplayFor(modelItem => item.Status.Descricao)
-                        </span>
+                   
+                        @{if (item.Status.Descricao == "Aberto")
+                            { <i class="fa fa-folder-open-o w3-button w3-round-large c-white b-orange"  title="Aberto" aria-hidden="true"></i> }}
+                        @{if (item.Status.Descricao == "Em andamento")
+                            {<span class="w3-button w3-round-large c-white b-gray"> <i class="fa fa-spinner" title="Em andamento" aria-hidden="true"></i></span>}
+                        }
+                        @{if (item.Status.Descricao == "Resolvido")
+                            { <i class="fa fa-check w3-button w3-round-large b-green c-white" title="Resolvido" aria-hidden="true"></i>} }                                
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.SubCategoria.Descricao)
@@ -68,7 +68,16 @@
                         @Html.DisplayFor(modelItem => item.UsuarioResponsavel.UserName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Descricao)
+                        @if(item.Descricao.Length > 25)
+                        {
+                            string display = item.Descricao.Substring(0, 22) + "...";
+                            @Html.DisplayFor(modelItem => display) 
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.Descricao)
+                        }
+
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Pa)
@@ -78,62 +87,96 @@
                         @Html.DisplayFor(modelItem => item.DataAbertura)
                     </td>
                     <td>
-                        <a href="@Url.Action("Details", "Chamados", new { id = item.IdChamado })" data-toggle="tooltip" data-placement="top" title="Detalhes" class="w3-button w3-round-large  b-orange c-white">
+                        <a href="@Url.Action("Details", "Chamados", new { id = item.IdChamado })" data-toggle="tooltip" data-placement="top" title="Detalhes" class="w3-button w3-round-large b-orange c-white">
 
                             <i class="fa fa-info-circle" aria-hidden="true"></i>
                         </a>
-                        @if (item.Status.IdStatus == 1 || item.Status.IdStatus == 2)
+                        @if (item.Status.IdStatus != 3)
                         {
-                            <a href="@Url.Action("Log", "Chamados", new { id = item.IdChamado })" data-toggle="tooltip" data-placement="top" title="Interações" class="w3-button w3-round-large  w3-gray c-white">
-                                <i class="fa fa-commenting-o" aria-hidden="true"></i>
-                            </a>
+                            if (item.Status.IdStatus == 2)
+                            {
+                                <a href="@Url.Action("Log", "Chamados", new { id = item.IdChamado })" data-toggle="tooltip" data-placement="top" title="Interações" class="w3-button w3-round-large  b-gray c-white">
+                                    <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                                </a>
+                            }
 
                             if (User.Identity.Name == "17")
                             {
                                 if (item.ResponsavelID == null)
                                 {
-                                    <a href="@Url.Action("PegarChamado", "Chamados", new { id = item.IdChamado })" data-toggle="tooltip" data-placement="top" title="Pegar Chamado" class="w3-button w3-round-large  w3-red c-white">
+                                    <a href="@Url.Action("PegarChamado", "Chamados", new { id = item.IdChamado })" data-toggle="tooltip" data-placement="top" title="Pegar Chamado" class="w3-button w3-round-large  b-red c-white">
                                         <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
                                     </a>
                                 }
                             }
                             if (item.Status.IdStatus == 2)
                             {
-                                <a href="@Url.Action("FinalizarChamado", "Chamados", new { id = item.IdChamado })" data-toggle="tooltip" data-placement="top" title="Finalizar Chamado" class="w3-button w3-round-large w3-green c-white">
+                                <a href="@Url.Action("FinalizarChamado", "Chamados", new { id = item.IdChamado })" data-toggle="tooltip" data-placement="top" title="Finalizar Chamado" class="w3-button w3-round-large b-green c-white">
                                     <i class="fa fa-check-circle-o" aria-hidden="true"></i>
                                 </a>
                             }
-
                         }
-                        
-
-
                     </td>
-
                 </tr>
                 }
             </table>
-            <br />
-
+        </div>
+        <div class="col-md-8 col-lg-8">
+            @Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))
+        </div>
+        <div class="col-md-4 col-lg-4">
+            <span class="pull-right">Registro(s): @Model.FirstItemOnPage de @Model.LastItemOnPage Total: @Model.TotalItemCount </span>
         </div>
     </div>
 
-    <script>
-    function procurarTicket() {
-      var input, filter, table, tr, td, i;
-      input = document.getElementById("myInput");
-      filter = input.value.toUpperCase();
-      table = document.getElementById("myTable");
-      tr = table.getElementsByTagName("tr");
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
+<script>
+function procurarTicket() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+        } else {
+        tr[i].style.display = "none";
         }
-      }
     }
-    </script>
+    }
+}
+
+function filtraChamados() {
+    var arrCheckboxes, checkboxes;
+    // pega todos checkboxes e transforma em array para poder iterar
+    checkboxes = document.querySelectorAll(".filtro");
+    arrCheckboxes = Array.from(checkboxes);               
+
+    // itera o reultado 
+    arrCheckboxes.forEach(elemento => {
+        // verifica se esta checado
+        if (!elemento.checked) {
+            mostraLinha(false, elemento);
+        } else {
+            mostraLinha(true, elemento);
+        }
+    });
+}
+
+function mostraLinha(mostrar, elemento) {
+    var linhas, arrLinhas, status;
+    // coleção de linhas de chamados abertos
+    linhas = document.querySelectorAll(".chamado_unitario");
+    arrLinhas = Array.from(linhas);
+
+    arrLinhas.forEach(linha => {
+        status = linha.cells[2].querySelector(".fa").title;
+        if (status.toUpperCase() === elemento.value.toUpperCase()) {
+            linha.style.display = mostrar === true ? "" : "none";
+        }
+    })
+}
+
+</script>

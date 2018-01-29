@@ -26,7 +26,8 @@ namespace ChamadosPro
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/w3c.css",
                       "~/Content/default.css",
-                      "~/Content/bootstrap.css"
+                      "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.css"
                     /*  "~/Content/site.css"*/));
         }
     }

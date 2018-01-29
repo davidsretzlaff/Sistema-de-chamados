@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity.EntityFramework;
 namespace ChamadosPro.Controllers
 {
-    //[Authorize(Roles = "adm")]
     public class RoleController : Controller
     { 
         ApplicationDbContext context;       

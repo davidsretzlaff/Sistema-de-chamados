@@ -11,7 +11,7 @@ namespace ChamadosPro.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Chamados");
         }
         [Authorize(Roles ="Admin")]
         public ActionResult About()

@@ -12,6 +12,7 @@ namespace ChamadosPro.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCategoria { get; set; } = 3;
+        [Display(Name = "Categoria")]
         public string Descricao { get; set; }
     }
 }

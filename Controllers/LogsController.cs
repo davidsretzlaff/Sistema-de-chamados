@@ -10,7 +10,7 @@ using ChamadosPro.Models;
 
 namespace ChamadosPro.Controllers
 {
-    [Authorize(Roles = "adm")]
+    [Authorize]
     public class LogsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

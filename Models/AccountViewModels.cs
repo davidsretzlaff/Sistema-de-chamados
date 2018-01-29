@@ -7,7 +7,10 @@ namespace ChamadosPro.Models
     {
         [Required]
         [Display(Name = "Matricula")]
-        public string Matricula { get; set; }
+        [MaxLength(4)]
+        public int Matricula{ get; set; }
+
+  
     }
 
     public class ExternalLoginListViewModel
@@ -70,7 +73,11 @@ namespace ChamadosPro.Models
         public string Matricula { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Display(Name = "Tipo Usuario")]
+        public string TipoUsuario { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -79,6 +86,8 @@ namespace ChamadosPro.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        
     }
 
     public class ResetPasswordViewModel

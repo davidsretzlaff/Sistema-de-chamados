@@ -11,6 +11,7 @@ namespace ChamadosPro.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Display(Name = "Equipamento")]
         public string IdEquipamento{ get; set; }
     }
 }

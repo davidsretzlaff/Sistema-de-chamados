@@ -1,0 +1,11 @@
+﻿@using Microsoft.AspNet.Identity
+@using ChamadosPro.Models
+@if (Request.IsAuthenticated)
+{
+
+    @Html.AntiForgeryToken()
+    var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+    var currentUser = manager.FindById(User.Identity.GetUserId());
+    @Html.ActionLink(currentUser.Nome + "!", "Index", "Chamados", routeValues: null, htmlAttributes: new { @class= "semdecoracao" })
+
+}

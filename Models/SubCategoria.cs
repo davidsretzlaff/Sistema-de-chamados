@@ -13,8 +13,10 @@ namespace ChamadosPro.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdSubcategoria { get; set; }
 
+        [Display(Name = "Sub-Categoria")]
         public string Descricao { get; set; }
 
+        [Display(Name = "Categoria")]
         public int? IdCategoria { get; set; }
         [ForeignKey("IdCategoria")]
         public virtual Categoria Categoria { get; set; }

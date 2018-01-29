@@ -25,7 +25,7 @@ namespace ChamadosPro.Controllers
             context = new ApplicationDbContext();
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -37,9 +37,9 @@ namespace ChamadosPro.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -70,18 +70,24 @@ namespace ChamadosPro.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        {           
+        {
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-           
+
             wbLogin.Service1 servico = new wbLogin.Service1();
+            UserInfo.UserInfo infouser = new UserInfo.UserInfo();
+            string usuario = infouser.GetUserInfo(Convert.ToInt32(model.Matricula));
+            string[] info = usuario.Split('|');
+            info[1] = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(info[1].ToLower());
+
 
             RegisterViewModel registrarUsuario = new RegisterViewModel()
             {
                 Matricula = model.Matricula,
                 Password = model.Password,
                 ConfirmPassword = model.Password,
-                Name = "adm"
+                Name = info[1],
+                TipoUsuario = info[0]
             };
 
             if (servico.cVerificaSenha(model.Matricula, model.Password))
@@ -111,7 +117,7 @@ namespace ChamadosPro.Controllers
                 ModelState.AddModelError("", "Senha incorreta.");
                 return View(model);
             }
-           
+
         }
 
         //
@@ -143,7 +149,7 @@ namespace ChamadosPro.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -175,9 +181,13 @@ namespace ChamadosPro.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser {
+                var user = new ApplicationUser
+                {
                     UserName = model.Matricula,
                     Id = model.Matricula,
+                    Nome = model.Name,
+                    TipoUsuario = model.TipoUsuario
+                    
                 };
                 try
                 {
@@ -186,7 +196,7 @@ namespace ChamadosPro.Controllers
 
                     if (result.Succeeded)
                     {
-                        await this.UserManager.AddToRoleAsync(user.Id, model.Name);
+                        await this.UserManager.AddToRoleAsync(user.Id, model.TipoUsuario);
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                         // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -378,7 +388,7 @@ namespace ChamadosPro.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Matricula = loginInfo.Login.ToString() });
+                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Matricula = Convert.ToInt32(loginInfo.Login)});
             }
         }
 
@@ -402,7 +412,7 @@ namespace ChamadosPro.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Matricula, Email = model.Matricula };
+                var user = new ApplicationUser { UserName = model.Matricula.ToString(), Email = model.Matricula.ToString() };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
