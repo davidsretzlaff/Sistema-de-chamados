@@ -1,0 +1,18 @@
+﻿@model ChamadosPro.Models.Equipamento
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Equipamento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdEquipamento }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

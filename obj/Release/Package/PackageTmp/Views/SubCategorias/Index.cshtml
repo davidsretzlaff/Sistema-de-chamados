@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ChamadosPro.Models.SubCategoria>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Status</h2>
+
+<p>
+    @Html.ActionLink("Criar", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria.IdCategoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria.IdCategoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdSubcategoria }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.IdSubcategoria }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.IdSubcategoria })
+        </td>
+    </tr>
+}
+
+</table>

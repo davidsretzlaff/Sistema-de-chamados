@@ -17,18 +17,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-               <span class="navbar-brand">@Html.Partial("Nome")</span>                
+                <span class="navbar-brand">@Html.Partial("Nome")</span>
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li >@Html.ActionLink("Cadastrar Chamado", "Create", "Chamados", "Chamados", new { @class = "w3-bar-item w3-button b-grayh" })</li>
-                    <li >@Html.ActionLink("Administrador", "Administrador", "Chamados", "Chamados", new { @class = "w3-bar-item w3-button b-grayh" })</li>
+                    <li>@Html.ActionLink("Cadastrar Chamado", "Create", "Chamados", "Chamados", new { @class = "w3-bar-item w3-button b-grayh" })</li>
+                    <li>@Html.ActionLink("Administrador", "Administrador", "Chamados", "Chamados", new { @class = "w3-bar-item w3-button b-grayh" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div >
+    <div>
         @Html.Partial("_LoginPartial")
         <div class="w3-container">
             <div class="w3-container w3-display-container">
@@ -47,3 +48,5 @@
 </body>
 </html>
 
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")}

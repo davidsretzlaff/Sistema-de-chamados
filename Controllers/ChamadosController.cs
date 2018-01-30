@@ -39,7 +39,7 @@ namespace ChamadosPro.Controllers
                 .Include(c => c.SubCategoria).Include(c => c.UsuarioRequisitante)
                 .Include(c => c.UsuarioResponsavel).Include(c => c.Equipamento).OrderByDescending(i => i.IdChamado).ToPagedList(pagina, 10);
 
-              
+             
                 return View(chamados);
             }
             //JOGA SÓ OS CHAMADOS DO USUARIO, CASO NÃO SEJA MASTER
@@ -250,7 +250,7 @@ namespace ChamadosPro.Controllers
            
         }
 
-        public ViewResult PegarChamado(int id)
+        public ViewResult PegarChamado(int id, int pagina = 1)
         {
             var chamadoslista = db.Chamados.Include(c => c.Categoria).Include(c => c.Status)
             .Include(c => c.SubCategoria).Include(c => c.UsuarioRequisitante)
@@ -270,14 +270,14 @@ namespace ChamadosPro.Controllers
                 {
                     db.Entry(chamados).State = EntityState.Modified;
                     db.SaveChanges();
-                    return View("Index", chamadoslista.ToList());
+                    return View("Index", chamadoslista.OrderByDescending(i => i.IdChamado).ToPagedList(pagina, 10));
                 }
             }  
-            return View("Index",chamadoslista.ToList());
+            return View("Index",chamadoslista.OrderByDescending(i => i.IdChamado).ToPagedList(pagina, 10));
         }
 
         // finaliza o chamado
-        public ViewResult FinalizarChamado(int id)
+        public ViewResult FinalizarChamado(int id, int pagina = 1)
         {
             var chamadoslista = db.Chamados.Include(c => c.Categoria).Include(c => c.Status)
             .Include(c => c.SubCategoria).Include(c => c.UsuarioRequisitante)
@@ -296,10 +296,10 @@ namespace ChamadosPro.Controllers
                 {
                     db.Entry(chamados).State = EntityState.Modified;
                     db.SaveChanges();
-                    return View("Index", chamadoslista.ToList());
+                    return View("Index", chamadoslista.OrderByDescending(i => i.IdChamado).ToPagedList(pagina, 10));
                 }
             }
-            return View("Index", chamadoslista.ToList());
+            return View("Index", chamadoslista.OrderByDescending(i => i.IdChamado).ToPagedList(pagina, 10));
         }
 
 

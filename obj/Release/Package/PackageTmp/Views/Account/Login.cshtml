@@ -1,0 +1,58 @@
+﻿@using ChamadosPro.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+@*<link href="~/Content/Login.css" rel="stylesheet" />*@
+<div class="">
+
+    <div class="col-md-12 formlogin" >
+
+    </div>
+
+    </div>
+
+<div class="container b-container">
+
+    <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 ">
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title text-center">Chamados</div>
+            </div>
+            <div class="panel-body">
+                <section id="loginForm">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                        @Html.AntiForgeryToken()
+                        <div class="input-group">
+                            <span class="input-group-addon" title="Matricula"><i class="glyphicon glyphicon-user"></i></span>
+                            @Html.TextBoxFor(m => m.Matricula, new { @class = "form-control", @maxlength = "4", @type = "number" ,placeholder = "Matricula" })
+                            
+
+
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Matricula, "", new { @class = "text-danger" })
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon" title="Senha"><i class="glyphicon glyphicon-lock"></i></span>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Senha" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        <br>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <div class="col-sm-12 controls">
+                                <button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
+                            </div>
+                        </div>
+                    }
+                </section>               
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

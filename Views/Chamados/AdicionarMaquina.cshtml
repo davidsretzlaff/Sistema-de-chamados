@@ -16,27 +16,31 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IdChamado)
 
-        <span class="alert-danger">@ViewBag.msg</span><br>
-            @if (ViewBag.msg == "Equipamento não cadastrado")
-            {
-                @Html.ActionLink("Cadastrar Equipamento", "Create", "Equipamento")
-            }
-            <div class="form-group">
-                @Html.LabelFor(model => model.EquipamentoID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.EquipamentoID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EquipamentoID, "", new { @class = "text-danger" })
-                </div>
+        <span class="alert-danger">@ViewBag.msg</span>
+        <br>
+        @if (ViewBag.msg == "Equipamento não cadastrado")
+        {
+            @Html.ActionLink("Cadastrar Equipamento", "Create", "Equipamento")
+        }
+        <div class="form-group">
+            @Html.LabelFor(model => model.EquipamentoID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EquipamentoID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EquipamentoID, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Adicionar máquina" class="btn btn-default" />
-                </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Adicionar máquina" class="btn btn-default" />
             </div>
+        </div>
     </div>
 }
 
-<div>   
+<div>
     @Html.ActionLink("Voltar", "Details", new { id = Model.IdChamado })
 </div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")}

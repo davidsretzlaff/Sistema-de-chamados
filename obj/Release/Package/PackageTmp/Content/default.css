@@ -1,0 +1,113 @@
+body{font-style: verdana !important; color: black;}
+.b-blue {
+  background: linear-gradient(to bottom, rgb(39, 63, 79), rgb(62, 97, 122));
+  color: #FFF;
+}
+
+a{text-decoration:none!important;}
+.semdecoracao{text-decoration:none!important; color: white;}
+.semdecoracao:hover{color: white;}
+.b-blue-light {
+background: linear-gradient(to right, rgb(39, 63, 79), rgb(62, 97, 122), rgb(39, 63, 79));
+  color: #FFF;
+}
+
+.b-blue-light {
+background: linear-gradient(to right, rgb(39, 63, 79), rgb(62, 97, 122), rgb(39, 63, 79));
+  color: #FFF;
+}
+
+.b-grayh:hover{background-color: #d8d7d7 !important;}
+.c-white {
+  color: #FFF !important;
+}
+.c-black {
+color:#1f1a1a !important;
+}
+.formlogin{
+
+  padding: 20px 0;
+  position: relative;
+  z-index: 2;
+    font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+
+}
+
+.range {
+  background-color: #ffae32 !important;
+  color: #FFF;
+}
+
+.b-orange-light {
+  background-color: #ffb646;
+}
+.b-orange {
+  background-color: #ffb646;
+}
+.b-orange-hover {
+  background-color: #ffb646;
+}
+
+.b-orange:hover {
+  background-color: #ffc873 !important;
+}
+
+.b-green {
+  background-color: #4CAF50;
+  color: #FFF;
+}
+.b-green:hover {
+  background-color: #62c466;
+  color: #FFF;
+}
+.b-gray {
+    background-color: #BBB;
+}
+
+.b-red {
+    background-color: #f44336;
+}
+.b-red:hover {
+    background-color: #fc665b;
+}
+.b-gray:hover {
+    background-color: #d4d4d4;
+}
+.fundologin{
+  background: #f5f5f5;
+  color: #FFF;
+}
+.right {
+  float: right;
+}
+form{color:black;}
+.noshow{display: none;}
+/*posições*/
+.center{margin: 0 auto !important;  }
+.sizelogin{width: 400px; }
+
+.containercad{height: 73vh;}
+.b-container{height: 77vh; }
+
+.containerchamados{height:84vh;}
+.fontlogo{font-size: 2.8em; margin-top: 25px;}
+.buttonlogin:hover{background-color: #46a14a !important;}
+footer{background-color: rgba(230,230,230,0.2); opacity: 1; height: 100px;border-top:1px solid #dddddd; text-align: center; color: black;}
+  footer p{font-size: 14px;}
+
+
+
+
+.teste {
+padding-top:20vh;
+
+}
+
+/*.w3-table-all {
+min-width: 970px;
+}*/
+.panel-default{
+    min-width:300px;
+    border:2px solid black;
+}

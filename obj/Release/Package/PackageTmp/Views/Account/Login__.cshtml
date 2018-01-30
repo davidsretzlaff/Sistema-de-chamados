@@ -1,0 +1,38 @@
+﻿@using ChamadosPro.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+<div class="modal-dialog formlogin">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="text-center">Welcome</h1>
+        </div>
+
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal formlogin", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="modal-body">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Matricula, new { @class = "orm-control input-lg" })
+
+                    @Html.TextBoxFor(m => m.Matricula, new { @class = "orm-control input-lg" })
+                    @Html.ValidationMessageFor(m => m.Matricula, "", new { @class = "orm-control input-lg" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "orm-control input-lg" })
+
+                    @Html.PasswordFor(m => m.Password, new { @class = "orm-control input-lg" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "orm-control input-lg" })
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Log in" class="btn btn-block btn-lg btn-primary" />
+                </div>
+            </div>
+
+
+
+        }
+    </div>

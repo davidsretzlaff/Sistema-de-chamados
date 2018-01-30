@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ChamadosPro.Models.Equipamento>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Máquinas cadastradas</h2>
+
+<p>
+    @Html.ActionLink("Adicionar máquina", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdEquipamento)
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <th>
+            @Html.DisplayFor(modelItem => item.IdEquipamento)
+        </th>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdEquipamento }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.IdEquipamento }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.IdEquipamento })
+        </td>
+    </tr>
+}
+
+</table>

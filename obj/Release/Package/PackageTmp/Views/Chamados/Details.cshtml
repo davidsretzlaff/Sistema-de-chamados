@@ -1,0 +1,118 @@
+﻿@model ChamadosPro.Models.Chamados
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Chamados</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubCategoria.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubCategoria.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequisitanteID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequisitanteID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponsavelID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponsavelID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MatriculaOperador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MatriculaOperador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataAbertura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataAbertura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFechamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFechamento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Equipamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EquipamentoID)
+        </dd>
+    </dl>
+</div>
+
+<p>
+    <a href="@Url.Action("Log", "Chamados", new { id = Model.IdChamado })" data-toggle="tooltip" data-placement="top" title="Interações" class="w3-button w3-round-large  w3-gray c-white">
+        <i class="fa fa-commenting-o" aria-hidden="true"></i>
+    </a>
+   
+
+    @if (Model.ResponsavelID != null)
+    {
+        <a href="@Url.Action("AdicionarMaquina", "Chamados", new { id = Model.IdChamado })" data-toggle="tooltip" data-placement="top" title="Adicionar Maquina" class="w3-button w3-round-large w3-black  c-white">
+            <i class="fa fa-desktop" aria-hidden="true"></i>
+        </a>
+        
+    }
+</p>
+<p>
+    @Html.ActionLink("Voltar", "Index")
+</p>
